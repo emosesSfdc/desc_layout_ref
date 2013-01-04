@@ -16,7 +16,8 @@
             (html5
               [:head
                [:title "Describe Layout Reference"]
-               (include-css "/css/reset.css")]
+               (include-css "/css/reset.css")
+               (include-css "/css/layout.css")]
               [:body
                [:div#wrapper
                 content]]))

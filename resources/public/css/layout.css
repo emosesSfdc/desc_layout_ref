@@ -1,0 +1,66 @@
+.buttons li {
+    display: inline-block;
+}
+
+.buttons .button {
+    text-align: center;
+    margin: 0 6px;
+    padding: 3px;
+    border: 1px #AAA solid
+}
+
+.buttons {
+    font-size: 90%;
+}
+
+.buttons .name {
+    font-size: 80%;
+    color: #666;
+}
+
+h1 {
+    font-size: 150%;
+    font-weight: bold;
+    margin: 2px 0 6px 0;
+}
+
+h2 {
+    font-size: 128%;
+    font-weight: bold;
+    margin: 2px 0 4px 0;
+}
+
+h3 {
+    font-size: 110%;
+    font-weight: bold;
+    margin: 2px 0;
+}
+
+.layout .layoutRows {
+    display: table;
+}
+
+.layout .layoutRow {
+    display: table-row;
+}
+
+.layout .layoutRows .item {
+    display: table-cell;
+    border: 1px #AAA solid;
+}
+
+.layout .item .label {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 8px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.layout .item .value {
+    display: inline-block;
+}
+
+.layout li {
+    list-style-type: none;
+}
