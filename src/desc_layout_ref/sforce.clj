@@ -20,7 +20,7 @@
   (.describeGlobal connection))
 
 (defn describeLayout [connection type recordTypes]
-  (.describeLayout connection type recordTypes))
+  (.describeLayout connection type (into-array String recordTypes)))
 
 (defn logout [connection]
   (.logout connection))
