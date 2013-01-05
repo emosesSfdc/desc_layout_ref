@@ -1,3 +1,7 @@
+body {
+    font-size: 14px;
+}
+
 .buttons li {
     display: inline-block;
 }
@@ -54,7 +58,7 @@ h3 {
     text-align: right;
     padding-right: 8px;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 .layout .item .value {

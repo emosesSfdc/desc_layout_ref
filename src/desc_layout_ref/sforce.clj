@@ -3,13 +3,13 @@
            [com.sforce.soap.partner PartnerConnection]))
 
 (def AUTH-ENDPOINT "http://localhost:8080/services/Soap/u/26.0")
-(def TOKEN "TWtu1H5iW3h9o0Crz7PFdoRNn")
+(comment (def TOKEN "TWtu1H5iW3h9o0Crz7PFdoRNn"))
 
-(defn login [username pass]
+(defn login [username pass key]
   (let [config (ConnectorConfig.)]
     (doto config
       (.setUsername username)
-      (.setPassword (str pass TOKEN))
+      (.setPassword (str pass key))
       (.setAuthEndpoint AUTH-ENDPOINT))
     (try 
       (PartnerConnection. config)

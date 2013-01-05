@@ -25,7 +25,7 @@
    [:div.item
     [:span.label (.getLabel item)]
     [:span.value
-     (if (.getPlaceholder item) "Blank")
+     (if (.getPlaceholder item) "Blank ")
      (editable (.getEditable item))
      (if (.getRequired item) (required))
      " "
@@ -36,15 +36,45 @@
    [:div.layoutRow
     (map layoutItem (.getLayoutItems row))]))
 
+(defpartial listInfo [label value]
+  (html5
+   [:span.infoItem label ": " value]))
+
+(defpartial rlColumn [column]
+  (html5
+   [:div.column
+    [:span.label (.getLabel column)]
+    [:span.name "[" (.getField column) " - " (.getName column) "]"]
+    (if-not (empty? (.getFormat column)) [:span.info "Format: " (.getFormat column)])]))
+
+(defpartial relatedList [list]
+  (html5
+   [:h3.label (.getLabel list) [:span.name (str " [" (.getName list) "]")]]
+   [:div.info
+    (listInfo "Field" (.getField list))
+    (listInfo "Object" (.getSobject list))
+    [:span.infoItem (if (.getCustom list) "Custom" "Standard")]
+    (listInfo "Row Limit" (.getLimitRows list))
+    (if (> 0 (count (.getSort list)))
+      (listInfo "Sort" (apply str (interpose ","
+                                             (map
+                                              (fn [sort] (str (.getColumn sort) " " (if (.getAscending sort)
+                                                                                      "ASC"
+                                                                                      "DESC")))
+                                              (.getSort list))))))]
+   [:div.columns (map rlColumn (.getColumns list))]))
+    
+
 (defpartial relatedLists [lists]
-  (str (count lists) " related list(s)"))
+  (map relatedList lists))
 
 
 (defpartial layoutSection [section]
   (html5
-   [:h3 (str (.getHeading section)
-             (if-not (.getUseHeading section) " (hidden)")
-             (if (.getUseCollapsibleSection section) " - collapsible"))]
+   [:h3 (.getHeading section)
+    [:span.columns (str " - " (.getColumns section) " Column")]             
+    (if-not (.getUseHeading section) " - (hidden)")
+    (if (.getUseCollapsibleSection section) " - collapsible")]
    [:div.layoutRows
     (map layoutRow (.getLayoutRows section))]))
 
@@ -52,9 +82,11 @@
   (map layoutSection sections))
    
 (defpartial buttonSection [buttons]
-  (unordered-list
-   (map (fn [button]
-          (html5 [:div.button
-                  [:div.label (str (.getLabel button) " - " (if (.isCustom button) "Cust" "Std"))]
-                  [:div.name (.getName button)]]))
-           (.getDetailButtons buttons))))
+  (if (> 0 (count buttons))
+    (unordered-list
+     (map (fn [button]
+            (html5 [:div.button
+                    [:div.label (str (.getLabel button) " - " (if (.isCustom button) "Cust" "Std"))]
+                    [:div.name (.getName button)]]))
+          (.getDetailButtons buttons)))))
+
