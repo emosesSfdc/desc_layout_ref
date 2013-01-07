@@ -1,6 +1,6 @@
 # desc_layout_ref
 
-A website written in noir. 
+An explorer for describeLayout.  Go to http://localhost:8085/home, and log in with your username, password, and remote access key.  
 
 ## Usage
 
